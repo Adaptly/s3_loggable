@@ -1,2 +1,3 @@
-s3-loggable
-===========
+S3Loggable
+==========
+Documentation to come...

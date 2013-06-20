@@ -1,11 +1,14 @@
 require "fog"
+require 's3_loggable/exceptions'
+require 's3_loggable/logger'
 
-class S3Loggable
+module S3Loggable
 
-  REQUIRED_CREDENTIALS = [:aws_access_key_id, :aws_secret_access_key]
+  RequiredCredentials = [:aws_access_key_id, :aws_secret_access_key]
 
-  def self.check_credentials
-     set_credentials unless (Fog.credentials.keys & REQUIRED_CREDENTIALS).count == REQUIRED_CREDENTIALS.count
+  def self.credentials?
+     set_credentials unless (Fog.credentials.keys & RequiredCredentials).count == RequiredCredentials.count
+     true
   end
 
   def self.set_credentials
@@ -17,6 +20,11 @@ class S3Loggable
     end
   end
 
-end
+  def add_log(bucket_name, message, id, time = Time.now, folder = nil)
+    #TODO: Allow inclusion in objects - Group by day? By ID?
+    folder = self.to_s unless folder
+    logger = S3Loggable::Logger.new(bucket_name)
+    logger.log_to_s3(folder, message, id, time)
+  end
 
-require 's3_loggable/exceptions'
+end

@@ -12,12 +12,12 @@ Gem::Specification.new do |s|
   s.description   = "Simple logging to S3"
   s.homepage      = "http://github.com/adaptly/s3_loggable"
 
-  s.add_development_dependency "bundler", "~> 1.3"
   s.add_development_dependency "rake"
+  s.add_development_dependency "mocha", "~> 0.14"
 
-  s.add_dependency "fog"
+  s.add_dependency "fog", "~> 1.12"
 
-  s.post_install_message = "Something clever about AWS and logs.  Hahahaha..."
+  s.post_install_message = "Something clever about logs.  Hahahaha..."
 
   s.files         = `git ls-files`.split("\n")
   s.test_files    = `git ls-files -- {test,spec,features}/*`.split("\n")
