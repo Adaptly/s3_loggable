@@ -1,6 +1,6 @@
 require "fog"
-require 's3_loggable/exceptions'
-require 's3_loggable/logger'
+require "s3_loggable/exceptions"
+require "s3_loggable/logger"
 
 module S3Loggable
 
@@ -18,13 +18,6 @@ module S3Loggable
     else
       raise ConfigurationError, "Set AWS access key id and secret access key"
     end
-  end
-
-  def add_log(bucket_name, message, id, time = Time.now, folder = nil)
-    #TODO: Allow inclusion in objects - Group by day? By ID?
-    folder = self.to_s unless folder
-    logger = S3Loggable::Logger.new(bucket_name)
-    logger.log_to_s3(folder, message, id, time)
   end
 
 end
