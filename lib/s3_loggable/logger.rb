@@ -24,10 +24,13 @@ module S3Loggable
     end
 
     def write_to_log(filename, message, date_time, file, temp_filename)
+      FileUtils.mkdir_p(File.dirname(temp_filename))
       local_file = File.open(temp_filename, 'w')
+      local_file.binmode
       local_file.write(file.body)
       local_file.close
       File.open(temp_filename, "a+") do |file_gz_io|
+	file_gz_io.binmode
        	Zlib::GzipWriter.wrap(file_gz_io) do |file_gz|
 	  file_gz.puts date_time.to_s
 	  file_gz.puts message.to_s
@@ -50,6 +53,7 @@ module S3Loggable
 				  :content_type => "application/gzip")
       FileUtils.mkdir_p(File.dirname(temp_filename))
       temp_file = File.new(temp_filename, 'w')
+      temp_file.binmode
       temp_file.close
       file
     end
