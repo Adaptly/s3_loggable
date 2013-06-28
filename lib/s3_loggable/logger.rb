@@ -15,7 +15,7 @@ module S3Loggable
       @bucket = @s3.directories.create(:key => bucket_name) unless @bucket
     end
 
-    def log_to_s3(message, folder, id, date_time = DateTime.now)
+    def log_to_s3(message, id, folder, date_time = DateTime.now)
       filename = "%s/%s/%04d/%02d/%02d%s" % [folder, id, date_time.year, date_time.month, date_time.day, ".rb.gz"]
       temp_filename = "tmp/#{filename}"
       file = get_log(filename)

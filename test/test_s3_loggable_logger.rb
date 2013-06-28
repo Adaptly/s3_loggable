@@ -57,7 +57,7 @@ class TestS3LoggableLogger < Test::Unit::TestCase
     s3_file.expects(:body)
     s3_file.expects(:body=)
     s3_file.expects(:save)
-    assert_equal(logger.log_to_s3(message, test_object, id), s3_file)
+    assert_equal(logger.log_to_s3(message, id, test_object), s3_file)
   end
 
   def test_log_to_s3_existing_log
@@ -74,7 +74,7 @@ class TestS3LoggableLogger < Test::Unit::TestCase
     s3_file.expects(:body).returns(deflated_string)
     s3_file.expects(:body=)
     s3_file.expects(:save)
-    assert_equal(logger.log_to_s3(message, test_object, id), s3_file)
+    assert_equal(logger.log_to_s3(message, id, test_object), s3_file)
   end
 
 end

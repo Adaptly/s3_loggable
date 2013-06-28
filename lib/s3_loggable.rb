@@ -20,4 +20,8 @@ module S3Loggable
     end
   end
 
+  def log_to_s3(bucket, message, id = self.id.to_s, folder = self.class.to_s, date_time = DateTime.now)
+    S3Loggable::Logger.new(bucket).log_to_s3(message, id, folder, date_time)
+  end
+
 end
