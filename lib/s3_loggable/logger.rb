@@ -5,7 +5,7 @@ module S3Loggable
   class Logger
     attr_reader :bucket, :s3
 
-    def initialize(bucket_name)
+    def initialize(bucket_name = S3Loggable.configuration.default_bucket)
       @s3 = Fog::Storage.new({:provider => 'AWS'}) if S3Loggable.credentials?
       set_s3_bucket(bucket_name)
     end
