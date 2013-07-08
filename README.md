@@ -1,4 +1,4 @@
-![Adaptly](http://www.adaptly.com/assets/logo-a91eb71925cbe6bb48e2a0505fc90afc.png)
+[![Adaptly](http://www.adaptly.com/assets/logo-a91eb71925cbe6bb48e2a0505fc90afc.png)](http://www.adaptly.com)
 
 s3_loggable is a Ruby gem that alllows simple logging of objects to S3:
 
